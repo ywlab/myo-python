@@ -8,3 +8,6 @@ Pipfile
 
 *.py[cod]
 *.egg-info
+sdk
+.idea
+venv

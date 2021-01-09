@@ -70,6 +70,7 @@ class Listener(myo.DeviceListener):
     self.output()
 
   def on_pose(self, event):
+    print(event.pose)
     self.pose = event.pose
     if self.pose == myo.Pose.double_tap:
       event.device.stream_emg(True)
@@ -98,7 +99,8 @@ class Listener(myo.DeviceListener):
 
 
 if __name__ == '__main__':
-  myo.init()
+  # myo.init()
+  myo.init(sdk_path='../sdk')
   hub = myo.Hub()
   listener = Listener()
   while hub.run(listener.on_event, 500):
