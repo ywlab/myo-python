@@ -24,7 +24,8 @@ import time
 
 
 def main():
-  myo.init()
+  # myo.init()
+  myo.init(sdk_path='../sdk')
   hub = myo.Hub()
   listener = myo.ApiDeviceListener()
 
