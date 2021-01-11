@@ -26,6 +26,7 @@ from threading import Lock, Thread
 
 import myo
 import numpy as np
+import pandas as pd
 
 
 class EmgCollector(myo.DeviceListener):
@@ -65,12 +66,14 @@ class Plot(object):
 
   def update_plot(self):
     emg_data = self.listener.get_emg_data()
+    # print(emg_data)
     emg_data = np.array([x[1] for x in emg_data]).T
     for g, data in zip(self.graphs, emg_data):
       if len(data) < self.n:
         # Fill the left side with zeroes.
         data = np.concatenate([np.zeros(self.n - len(data)), data])
       g.set_ydata(data)
+    # pd.DataFrame(emg_data).to_csv('../emg_data.csv',index=False)
     plt.draw()
 
   def main(self):
